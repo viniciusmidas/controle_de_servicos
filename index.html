@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de Registro de Atividades">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <title>Registro de Atividades</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Tela de Login -->
+        <div id="login-section">
+            <h2>Login</h2>
+            <input type="text" id="usuario" placeholder="Usuário">
+            <input type="password" id="senha" placeholder="Senha">
+            <button onclick="login()">Entrar</button>
+        </div>
+
+        <!-- Tela de Registro de Atividades -->
+        <div id="app-section" style="display: none;">
+            <h2>Bem-vindo, <span id="nomeUsuario"></span></h2>
+            <h3>Clientes</h3>
+            <input type="text" id="cliente" placeholder="Nome do Cliente">
+            <input type="text" id="atividade" placeholder="Atividade">
+            <input type="datetime-local" id="inicio">
+            <input type="datetime-local" id="fim">
+            <button onclick="registrarAtividade()">Registrar Atividade</button>
+
+            <h3>Atividades Registradas</h3>
+            <ul id="listaAtividades"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Registrar o Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('Service Worker registrado com sucesso:', registration);
+                }).catch(error => {
+                    console.log('Falha ao registrar o Service Worker:', error);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
